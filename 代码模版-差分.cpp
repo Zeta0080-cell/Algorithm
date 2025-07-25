@@ -1,37 +1,31 @@
-//代码模版-差分
+//代码模版-差分 
 #include<bits/stdc++.h>
 using namespace std;
-const int N=100010;
-
-int n,m;
-int a[N],b[N];
-
-void insert(int l,int r,int c)
-{
-    b[l]+=c;
-    b[r+1]-=c;
-}
+const int N=1e6;
+int a[N],d[N];
 
 int main()
 {
-    scanf("%d%d",&n,&m);
-    for(int i=1;i<=n;i++)
+    int n,m;
+    int l,r,c;
+    cin>>n>>m;
+    for(int i=1;i<=n;i++)//获得初始数组
     {
         scanf("%d",&a[i]);
     }
-    for(int i=1;i<=n;i++)
+    for(int i=1;i<=n;i++)//构造差分数组
     {
-        insert(i,i,a[i]);
+        d[i]=a[i]-a[i-1];
     }
     while(m--)
     {
-        int l,r,c;
-        scanf("%d%d%d",&l,&r,&c);
-        insert(l,r,c);
+        cin>>l>>r>>c;
+        d[l]+=c;
+        d[r+1]-=c;
     }
-    for(int i=1;i<=n;i++)
+    for(int i=1;i<=n;i++)//利用前缀和求操作完后的数组
     {
-        b[i]+=b[i-1];
+        d[i]+=d[i-1];
     }
     for(int i=1;i<=n;i++)
     {
