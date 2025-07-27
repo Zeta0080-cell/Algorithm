@@ -1,4 +1,4 @@
-//acwing52-数组中出现次数超过一半的数字
+//acwing52-数组中出现次数超过一半的数字 
 #include<bits/stdc++.h>
 using namespace std;
 const int N=1e3;

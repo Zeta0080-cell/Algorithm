@@ -24,5 +24,6 @@ int main()
 		}
 		res=max(res,i-j+1);
 	} 
+	printf("%d",res);
 	return 0;
 }
