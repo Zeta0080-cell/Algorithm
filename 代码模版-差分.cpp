@@ -29,7 +29,7 @@ int main()
     }
     for(int i=1;i<=n;i++)
     {
-        printf("%d ",b[i]);
+        printf("%d ",d[i]);
     }
     return 0;
 }
