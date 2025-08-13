@@ -7,13 +7,13 @@ int a[N];
 int main()
 {
 	int n,k;
-	cin>>n>>K;
+	cin>>n>>k;
 	for(int i=1;i<=n;i++)
 	{
 		cin>>a[i];//读入 
 	}
 	deque<int> q;//声明一个队列
-	for(int i=1;i<=n;i++)
+	for(int i=1;i<=n;i++)//可以理解为i指针指向的是队尾 
 	{
 		while(q.size()&&q.back()>a[i])//新进入窗口的值小于队尾元素，则队尾出列
 		{
