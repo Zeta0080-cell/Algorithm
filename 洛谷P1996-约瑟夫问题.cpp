@@ -18,7 +18,7 @@ int main()
             i = 1;
         }
         // 如果当前人还没出圈，才计数
-        if(!visited[i]) 
+        if(!visited[i]) //使用这个数组记录i的状态，排除已经出圈的情况 
 		{
             j++;
             if(j == m)
