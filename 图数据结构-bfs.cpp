@@ -1,0 +1,117 @@
+//图数据结构-bfs 
+#include<bits/stdc++.h>
+#define MAXSIZE 100
+using namespace std;
+typedef char VertexType;   //顶点 
+typedef int EdgeType;   //边 
+typedef struct
+{
+	VertexType vertex[MAXSIZE];   //图的顶点信息 
+	EdgeType arc[MAXSIZE][MAXSIZE];  //存储图的边信息矩阵 
+	int vertex_num;
+	int edge_num;
+}Mat_Grph;
+
+int visited[MAXSIZE];   //用来记录某一个顶点是否被访问过
+int front = 0;  //队头指针 
+int rear = 0;   //队尾指针
+int queue[MAXSIZE];  //数组模拟队列 
+
+//创建图 
+void create_graph(Mat_Grph* G)
+{
+	G->vertex_num = 9;
+	G->edge_num = 15;
+	
+	//初始化顶点 
+	G->vertex[0] = 'A';
+	G->vertex[1] = 'B';
+	G->vertex[2] = 'C';
+	G->vertex[3] = 'D';
+	G->vertex[4] = 'E';
+	G->vertex[5] = 'F';
+	G->vertex[6] = 'G';
+	G->vertex[7] = 'H';
+	G->vertex[8] = 'I';
+	
+	//初始化边数据 
+	for(int i = 0; i < G->vertex_num; i ++)
+	{
+		for(int j = 0; j < G->vertex_num; j ++)
+		{
+			G->arc[i][j] = 0;
+		}
+	}
+	//A-B A-F 
+	G->arc[0][1] = 1;
+	G->arc[0][5] = 1;
+	
+	//B-C B-G B-I
+	G->arc[1][2] = 1;
+	G->arc[1][6] = 1;
+	G->arc[1][8] = 1;
+	
+	//C-D C-I
+	G->arc[2][3] = 1;
+	G->arc[2][8] = 1;
+	
+	//D-E D-G D-H D-I
+	G->arc[3][4] = 1;
+	G->arc[3][6] = 1;
+	G->arc[3][7] = 1;
+	G->arc[3][8] = 1;
+	
+	//E-F E-H
+	G->arc[4][5] = 1;
+	G->arc[4][7] = 1;
+	
+	//F-G
+	G->arc[5][6] = 1;
+	
+	//G-H
+	G->arc[6][7] = 1;
+	for(int i = 0; i < G->vertex_num; i ++)
+	{
+		for(int j = 0; j < G->vertex_num; j ++)
+		{
+			G->arc[j][i] = G->arc[i][j];  //边关于对角线的对称	
+		} 
+	}
+}
+
+//BFS搜索
+void bfs(Mat_Grph G)
+{
+	int i = 0;
+	visited[i] = 1;
+	printf("%c\n",G.vertex[i]);
+	queue[rear] = i;
+	rear ++;
+	while(front != rear)
+	{
+		i = queue[front];
+		front ++;
+		for(int j = 0; j < G.vertex_num; j ++)
+		{
+			if(G.arc[i][j] == 1 && visited[j] = 0)
+			{
+				visited[j] = 1;
+				printf("%c\n",G.vertex[j]);
+				queue[rear] = j;
+				rear ++; 
+			}	
+		}	
+	}	
+} 
+
+int main()
+{
+	Mat_Grph G;
+	create_graph(&G);
+	for(int i = 0; i < G.vertex_num; i ++)
+	{
+		visited[i] = 0;
+	}
+	bfs(G);
+	return 0;
+}
